@@ -1,9 +1,8 @@
-"use client"
-
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { FaHeart, FaGlobe, FaUsers, FaLeaf, FaCreditCard, FaShieldAlt } from "react-icons/fa"
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL 
 const DonatePage = () => {
   const [selectedAmount, setSelectedAmount] = useState(250)
   const [customAmount, setCustomAmount] = useState("")
@@ -50,7 +49,7 @@ const DonatePage = () => {
 
     try {
       // Updated API endpoint to match our backend route
-      const response = await fetch("http://localhost:5005/api/donations/create-checkout-session", {
+      const response = await fetch(`${API_BASE_URL}/api/donations/create-checkout-session`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

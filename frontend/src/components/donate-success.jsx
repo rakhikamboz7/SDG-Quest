@@ -1,9 +1,7 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { FaCheckCircle, FaHeart, FaCopy } from "react-icons/fa"
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL 
 const DonateSuccess = () => {
   const [sessionData, setSessionData] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -16,7 +14,7 @@ const DonateSuccess = () => {
         const sessionId = urlParams.get("session_id")
 
         if (sessionId) {
-          const response = await fetch(`http://localhost:5005/api/donations/session/${sessionId}`)
+          const response = await fetch(`${API_BASE_URL}/api/donations/session/${sessionId}`)
           if (response.ok) {
             const data = await response.json()
             setSessionData(data.session)
