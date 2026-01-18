@@ -6,6 +6,7 @@ const connectDB = require("./config/db")
 
 const app = express()
 const PORT = 5005
+app.options("*", cors());
 
 console.log("Starting server...")
 
@@ -25,7 +26,8 @@ app.use("/uploads", express.static("uploads"))
 console.log("🔧 Loading routes...")
 
 
-app.use("/", require("./routes/userRoutes")) 
+app.use("/api/auth", require("./routes/userRoutes"))
+
 app.use("/api/quizzes", require("./routes/quizRoutes"))
 app.use("/api", require("./routes/scoreRoutes"))
 app.use("/api/donations", require("./routes/donationRoutes"))

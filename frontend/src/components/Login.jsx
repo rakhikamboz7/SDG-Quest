@@ -83,7 +83,7 @@ function LoginSignup() {
 
     try {
       // ✅ SECURE: No role sent from frontend
-      await axios.post(`${BACKEND_URL}/register`, {
+      await axios.post(`${BACKEND_URL}/api/auth/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -111,7 +111,7 @@ function LoginSignup() {
     setError("")
 
     try {
-      const res = await axios.post(`${BACKEND_URL}/login`, {
+      const res = await axios.post(`${BACKEND_URL}/api/auth/login`, {
         email: formData.email,
         password: formData.password,
       })
