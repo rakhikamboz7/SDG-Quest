@@ -26,7 +26,7 @@ app.use("/uploads", express.static("uploads"))
 console.log("🔧 Loading routes...")
 
 
-app.use("/api/auth", require("./routes/userRoutes"))
+app.use("/api/auth", require("./routes/authRoutes"))
 
 app.use("/api/quizzes", require("./routes/quizRoutes"))
 app.use("/api", require("./routes/scoreRoutes"))
