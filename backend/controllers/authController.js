@@ -7,22 +7,32 @@ const generateToken = require("../utils/generateToken")
 
 
 exports.registerUser = async (req, res) => {
-  const { name, email, password } = req.body
-  console.log("REGISTER BODY:", req.body)
-  console.log("PASSWORD TYPE:", typeof req.body.password)
-
   try {
+    const { name, email, password } = req.body
+
+    console.log("REGISTER BODY:", req.body)
+    console.log("PASSWORD VALUE:", password)
+    console.log("PASSWORD TYPE:", typeof password)
+
     if (!name || !email || !password) {
       return res.status(400).json({ error: "All fields are required" })
+    }
+
+    if (
+      typeof name !== "string" ||
+      typeof email !== "string" ||
+      typeof password !== "string"
+    ) {
+      return res.status(400).json({ error: "Invalid input types" })
+    }
+
+    if (password.trim().length < 6) {
+      return res.status(400).json({ error: "Password must be at least 6 characters long" })
     }
 
     const existingUser = await User.findOne({ email })
     if (existingUser) {
       return res.status(400).json({ error: "User already exists with this email" })
-    }
-
-    if (password.length < 6) {
-      return res.status(400).json({ error: "Password must be at least 6 characters long" })
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -31,27 +41,26 @@ exports.registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: "user", // ✅ Always user role
+      role: "user",
       isActive: true,
     })
 
     await newUser.save()
 
     res.status(201).json({
-  message: "User registered successfully",
-  user: {
-    id: newUser._id,
-    name: newUser.name,
-    email: newUser.email,
-    role: newUser.role,
-  },
-})
+      message: "User registered successfully",
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+      },
+    })
   } catch (err) {
     console.error("Registration error:", err)
     res.status(500).json({ error: err.message })
   }
 }
-
 // ✅ SECURE Login User
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body

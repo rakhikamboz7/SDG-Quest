@@ -74,34 +74,43 @@ function LoginSignup() {
     return true
   }
 
-  const handleRegister = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) return
+const handleRegister = async (e) => {
+  e.preventDefault()
+  if (!validateForm()) return
 
-    setLoading(true)
-    setError("")
+  setLoading(true)
+  setError("")
 
-    try {
-      // ✅ SECURE: No role sent from frontend
-      await axios.post(`${BACKEND_URL}/api/auth/register`, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        // ✅ No role field - users are always created as 'user'
-      })
+  try {
 
-      setSuccess("Registration successful! Please sign in.")
-      setTimeout(() => {
-        setIsSignUp(false)
-        setSuccess("")
-      }, 2000)
-    } catch (err) {
-      console.error("Registration error:", err)
-      setError(err.response?.data?.error || "Registration failed. Please try again.")
-    } finally {
-      setLoading(false)
-    }
+    // 🔍 DEBUG: check what is actually being sent
+    console.log("REGISTER PAYLOAD:", {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      passwordType: typeof formData.password
+    })
+
+    // ✅ API request
+    await axios.post(`${BACKEND_URL}/api/auth/register`, {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password
+    })
+
+    setSuccess("Registration successful! Please sign in.")
+    setTimeout(() => {
+      setIsSignUp(false)
+      setSuccess("")
+    }, 2000)
+
+  } catch (err) {
+    console.error("Registration error:", err)
+    setError(err.response?.data?.error || "Registration failed. Please try again.")
+  } finally {
+    setLoading(false)
   }
+}
 
 const handleLogin = async (e) => {
   e.preventDefault()
