@@ -55,13 +55,6 @@ const SDGWheel = () => {
   const checkAchievements = (newSpinCount, newProgressSize) => {
     const newAchievements = []
 
-    if (newSpinCount === 1)
-      newAchievements.push({
-        id: "first-spin",
-        title: "First Spin!",
-        icon: "🎯",
-        description: "Welcome to your SDG journey!",
-      })
     if (newSpinCount === 5)
       newAchievements.push({ id: "explorer", title: "Explorer", icon: "🗺️", description: "You've spun 5 times!" })
     if (newSpinCount === 10)
@@ -210,7 +203,7 @@ const SDGWheel = () => {
 
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen p-4 py-8 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="relative flex flex-col items-center justify-center min-h-screen p-4 py-28 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Floating Celebration Particles */}
      
       {/* Achievement Notification */}
