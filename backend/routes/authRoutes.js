@@ -16,6 +16,7 @@ const adminOnly = require("../middleware/adminMiddleware")
 
 // ✅ NEW SECURE AUTHENTICATION ROUTES
 router.post("/register", registerUser)
+
 router.post("/login", loginUser)
 router.get("/user", protect, getUserData)
 

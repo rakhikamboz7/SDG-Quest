@@ -3,7 +3,10 @@ const bcrypt = require("bcryptjs")
 const User = require("../models/user")
 const generateToken = require("../utils/generateToken")
 
-// ✅ SECURE Register User
+console.log("REGISTER BODY:", req.body)
+console.log("PASSWORD TYPE:", typeof req.body.password)
+
+
 exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body
 
@@ -39,6 +42,7 @@ exports.registerUser = async (req, res) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
+        password: newUser.password,
         role: newUser.role,
       },
     })

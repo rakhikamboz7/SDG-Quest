@@ -6,7 +6,10 @@ const connectDB = require("./config/db")
 
 const app = express()
 const PORT = 5005
-app.options("*", cors());
+app.use(cors({
+  origin: ["https://sdg-quest-webapp-bqhp.vercel.app", "https://localhost:5173"],
+  credentials: true
+}));
 
 console.log("Starting server...")
 
@@ -47,7 +50,7 @@ app.use("*", (req, res) => {
     message: "Route not found",
     method: req.method,
     url: req.originalUrl,
-    availableRoutes: ["GET /", "GET /test", "POST /login", "POST /register", "POST /create-admin"],
+    availableRoutes: ["GET /", "GET /test", "POST /login", "POST /register", "POST /create-admin", "...", ],
   })
 })
 
