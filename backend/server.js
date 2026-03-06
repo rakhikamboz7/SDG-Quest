@@ -7,7 +7,7 @@ const connectDB = require("./config/db")
 const app = express()
 const PORT = 5005
 app.use(cors({
-  origin: ["https://sdg-quest-webapp-bqhp.vercel.app", "https://localhost:5173"],
+  origin: ["https://sdg-quest-5n7s.vercel.app", "https://localhost:5173"],
   credentials: true
 }));
 
