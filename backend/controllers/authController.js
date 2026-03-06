@@ -11,23 +11,14 @@ exports.registerUser = async (req, res) => {
     const { name, email, password } = req.body
 
     console.log("REGISTER BODY:", req.body)
-    console.log("PASSWORD VALUE:", password)
     console.log("PASSWORD TYPE:", typeof password)
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: "All fields are required" })
     }
 
-    if (
-      typeof name !== "string" ||
-      typeof email !== "string" ||
-      typeof password !== "string"
-    ) {
-      return res.status(400).json({ error: "Invalid input types" })
-    }
-
-    if (password.trim().length < 6) {
-      return res.status(400).json({ error: "Password must be at least 6 characters long" })
+    if (typeof password !== "string") {
+      return res.status(400).json({ error: "Password must be a string" })
     }
 
     const existingUser = await User.findOne({ email })
@@ -35,7 +26,8 @@ exports.registerUser = async (req, res) => {
       return res.status(400).json({ error: "User already exists with this email" })
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(String(password), salt)
 
     const newUser = new User({
       name,
@@ -56,6 +48,7 @@ exports.registerUser = async (req, res) => {
         role: newUser.role,
       },
     })
+
   } catch (err) {
     console.error("Registration error:", err)
     res.status(500).json({ error: err.message })

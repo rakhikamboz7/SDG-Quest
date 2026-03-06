@@ -90,9 +90,11 @@ const handleRegister = async (e) => {
       password: formData.password,
       passwordType: typeof formData.password
     })
-
+console.log("BACKEND_URL:", BACKEND_URL)
     // ✅ API request
-    await axios.post(`${BACKEND_URL}/api/auth/register`, {
+    await axios.post(`${BACKEND_URL}/api/auth/register`,
+       {
+    
       name: formData.name,
       email: formData.email,
       password: formData.password
