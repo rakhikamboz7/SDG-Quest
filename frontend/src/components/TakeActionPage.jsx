@@ -284,9 +284,9 @@ const TakeActionPage = () => {
 
   const renderAssessment = () => (
     <div className="max-w-4xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Personal Sustainability Assessment</h2>
-        <p className="text-xl text-gray-600">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-2">Personal Sustainability Assessment</h2>
+        <p className="text-xl text-gray-600 mb-8">
           Let's understand your current habits to provide personalized action suggestions
         </p>
       </motion.div>
@@ -377,7 +377,7 @@ const TakeActionPage = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200"
+              className="bg-white rounded-2xl p-18 shadow-xl border border-gray-200"
             >
               <div className="flex items-center mb-8">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-r from-red-100 to-orange-100 flex items-center justify-center mr-6">
@@ -446,9 +446,9 @@ const TakeActionPage = () => {
   )
 
   const renderPledgeForm = () => (
-    <div className="max-w-4xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Create Your Pledge</h2>
+    <div className="max-w-4xl mx-auto margin-bottom-120">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center margin-top-120">
+        <h2 className="text-4xl font-bold text-gray-800 mb-10">Create Your Pledge</h2>
         <p className="text-xl text-gray-600">Commit to your goal and track your progress</p>
       </motion.div>
 
@@ -596,10 +596,10 @@ const TakeActionPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-white">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-25">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center justify-between mb-12"
         >
@@ -611,7 +611,7 @@ const TakeActionPage = () => {
             <span className="text-lg font-medium">Back</span>
           </button>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 margin-bottom-120">
             {["assessment", "recommendations", "pledge", "success"].map((step, index) => (
               <div
                 key={step}
