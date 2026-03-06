@@ -8,13 +8,10 @@ import EnhancedParticles from "../components/Particles"
 import GrootChatbot from "../components/GrootChatbot"
 import { motion, AnimatePresence } from "framer-motion"
 import {
-  Target,
   BookOpen,
   Award,
   ChevronRight,
   CheckCircle2,
-  Search,
-  Bell,
   ChevronUp,
   ChevronDown,
   Lock,
@@ -263,7 +260,7 @@ function QuizPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 to-emerald-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-teal-50 to-emerald-50">
         <motion.div className="text-center">
           <motion.div
             animate={{ rotate: 360 }}
@@ -278,7 +275,7 @@ function QuizPage() {
 
   if (!quiz) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-teal-50 to-emerald-50">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-teal-50 to-emerald-50">
         <div className="text-center p-8 bg-white rounded-2xl shadow-xl border border-slate-200">
           <BookOpen className="w-16 h-16 text-slate-400 mx-auto mb-4" />
           <p className="text-xl text-slate-700 mb-4">Quiz not available for this goal.</p>
@@ -316,7 +313,7 @@ function QuizPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-emerald-50">
+    <div className="min-h-screen bg-linear-to-br from-teal-50 to-emerald-50">
       {/* Enhanced Particles */}
       <EnhancedParticles show={showCelebration} score={score} totalQuestions={quiz?.questions?.length || 5} />
 
@@ -343,9 +340,9 @@ function QuizPage() {
               className="text-white px-8 py-6 rounded-2xl shadow-2xl max-w-md mx-4 text-center border border-opacity-30"
               style={{ backgroundColor: PRIMARY_COLOR, borderColor: PRIMARY_COLOR }}
             >
-              <div className="text-4xl mb-3">💪</div>
+              <div className="text-4xl mb-3"></div>
               <p className="text-lg font-semibold leading-relaxed">{encouragingMessage}</p>
-              <div className="mt-3 text-sm opacity-90">Continue your learning journey! 🌟</div>
+              <div className="mt-3 text-sm opacity-90">Continue your learning journey!</div>
             </div>
           </motion.div>
         )}

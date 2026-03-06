@@ -33,6 +33,7 @@ app.use("/api/quizzes", require("./routes/quizRoutes"));
 app.use("/api", require("./routes/scoreRoutes"));
 app.use("/api/donations", require("./routes/donationRoutes"));
 
+
 app.get("/", (req, res) => {
   res.json({
     message: "API is running...",
@@ -51,6 +52,18 @@ app.use("*", (req, res) => {
       "POST /api/auth/register",
       "POST /api/auth/login",
       "GET /api/auth/user",
+      "GET /api/quizzes",
+      "POST /api/quizzes",
+      "GET /api/scores",
+      "POST /api/scores",
+      "POST /api/donations",
+      "POST /api/admin/users/create-admin",
+      "GET /api/admin/users",
+      "GET /api/admin/users/:id",
+      "PUT /api/admin/users/:id",
+      "DELETE /api/admin/users/:id",
+
+
     ],
   });
 });

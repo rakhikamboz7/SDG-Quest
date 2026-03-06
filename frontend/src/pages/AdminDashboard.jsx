@@ -93,61 +93,54 @@ const AdminDashboard = () => {
     }
   }, [activeSection])
 
-  const fetchUsers = async () => {
-    setLoading(true)
-    setError("")
-    try {
-      const response = await axios.get(`${BACKEND_URL}/admin/users`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      setUsers(response.data)
-    } catch (err) {
-      setError("Failed to fetch users")
-      console.error("Fetch users error:", err)
-    } finally {
-      setLoading(false)
-    }
+const fetchUsers = async () => {
+  setLoading(true)
+  setError("")
+  try {
+    const response = await axios.get(`${BACKEND_URL}/api/auth/admin/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    setUsers(response.data)
+  } catch (err) {
+    setError("Failed to fetch users")
+    console.error("Fetch users error:", err)
+  } finally {
+    setLoading(false)
   }
+}
 
-
-  const updateUserRole = async (userId, newRole) => {
-    try {
-      await axios.put(
-        `${BACKEND_URL}/admin/user-role`,
-        { userId, role: newRole },
-        { headers: { Authorization: `Bearer ${token}` } },
-      )
-
-      // Update local state
-      setUsers(users.map((u) => (u._id === userId ? { ...u, role: newRole } : u)))
-      alert(`User role updated to ${newRole}`)
-    } catch (err) {
-      setError("Failed to update user role")
-      console.error("Update role error:", err)
-      alert("Failed to update user role")
-    }
+const updateUserRole = async (userId, newRole) => {
+  try {
+    await axios.put(
+      `${BACKEND_URL}/api/auth/admin/user-role`,
+      { userId, role: newRole },
+      { headers: { Authorization: `Bearer ${token}` } },
+    )
+    setUsers(users.map((u) => (u._id === userId ? { ...u, role: newRole } : u)))
+    alert(`User role updated to ${newRole}`)
+  } catch (err) {
+    setError("Failed to update user role")
+    console.error("Update role error:", err)
+    alert("Failed to update user role")
   }
+}
 
-  // ✅ SECURE: Deactivate user with authentication
-  const deactivateUser = async (userId) => {
-    if (!confirm("Are you sure you want to deactivate this user?")) return
-
-    try {
-      await axios.put(
-        `${BACKEND_URL}/admin/deactivate/${userId}`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } },
-      )
-
-
-      setUsers(users.map((u) => (u._id === userId ? { ...u, isActive: false } : u)))
-      alert("User deactivated successfully")
-    } catch (err) {
-      setError("Failed to deactivate user")
-      console.error("Deactivate user error:", err)
-      alert("Failed to deactivate user")
-    }
+const deactivateUser = async (userId) => {
+  if (!confirm("Are you sure you want to deactivate this user?")) return
+  try {
+    await axios.put(
+      `${BACKEND_URL}/api/auth/admin/deactivate/${userId}`,
+      {},
+      { headers: { Authorization: `Bearer ${token}` } },
+    )
+    setUsers(users.map((u) => (u._id === userId ? { ...u, isActive: false } : u)))
+    alert("User deactivated successfully")
+  } catch (err) {
+    setError("Failed to deactivate user")
+    console.error("Deactivate user error:", err)
+    alert("Failed to deactivate user")
   }
+}
 
   const fetchSubmissions = async () => {
     setLoading(true)
