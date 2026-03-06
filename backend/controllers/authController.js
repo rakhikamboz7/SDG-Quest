@@ -3,12 +3,13 @@ const bcrypt = require("bcryptjs")
 const User = require("../models/user")
 const generateToken = require("../utils/generateToken")
 
-console.log("REGISTER BODY:", req.body)
-console.log("PASSWORD TYPE:", typeof req.body.password)
+
 
 
 exports.registerUser = async (req, res) => {
   const { name, email, password } = req.body
+  console.log("REGISTER BODY:", req.body)
+  console.log("PASSWORD TYPE:", typeof req.body.password)
 
   try {
     if (!name || !email || !password) {
