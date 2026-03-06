@@ -1,5 +1,5 @@
 // NEW FILE - Secure authentication controller (separate from your existing userController)
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcrypt")
 const User = require("../models/user")
 const generateToken = require("../utils/generateToken")
 
@@ -10,31 +10,23 @@ exports.registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body
 
-    console.log("REGISTER BODY:", req.body)
-    console.log("PASSWORD TYPE:", typeof password)
-
     if (!name || !email || !password) {
       return res.status(400).json({ error: "All fields are required" })
     }
 
-    if (typeof password !== "string") {
-      return res.status(400).json({ error: "Password must be a string" })
-    }
-
     const existingUser = await User.findOne({ email })
     if (existingUser) {
-      return res.status(400).json({ error: "User already exists with this email" })
+      return res.status(400).json({ error: "User already exists" })
     }
 
-    const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(String(password), salt)
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     const newUser = new User({
       name,
       email,
       password: hashedPassword,
       role: "user",
-      isActive: true,
+      isActive: true
     })
 
     await newUser.save()
@@ -44,9 +36,8 @@ exports.registerUser = async (req, res) => {
       user: {
         id: newUser._id,
         name: newUser.name,
-        email: newUser.email,
-        role: newUser.role,
-      },
+        email: newUser.email
+      }
     })
 
   } catch (err) {
@@ -54,7 +45,7 @@ exports.registerUser = async (req, res) => {
     res.status(500).json({ error: err.message })
   }
 }
-// ✅ SECURE Login User
+
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body
 
