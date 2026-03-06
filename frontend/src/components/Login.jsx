@@ -103,53 +103,49 @@ function LoginSignup() {
     }
   }
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    if (!validateForm()) return
+const handleLogin = async (e) => {
+  e.preventDefault()
+  if (!validateForm()) return
 
-    setLoading(true)
-    setError("")
+  setLoading(true)
+  setError("")
 
-    try {
-      const res = await axios.post(`${BACKEND_URL}/api/auth/login`, {
-        email: formData.email,
-        password: formData.password,
-      })
+  try {
+    const res = await axios.post(`${BACKEND_URL}/api/auth/login`, {
+      email: formData.email,
+      password: formData.password,
+    })
 
-      const { token, userId } = res.data
+    const { token, userId } = res.data
 
-      // Store auth data
-      localStorage.setItem("token", token)
-      localStorage.setItem("userId", userId)
+    localStorage.setItem("token", token)
+    localStorage.setItem("userId", userId)
 
-      // ✅ SECURE: Get user data from protected endpoint
-      const userRes = await axios.get(`${BACKEND_URL}/user`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+    const userRes = await axios.get(`${BACKEND_URL}/api/auth/user`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
-      const userData = {
-        name: userRes.data.name,
-        email: userRes.data.email,
-        role: userRes.data.role,  
-        profilePicture: userRes.data.image,
-      }
-
-      localStorage.setItem("user", JSON.stringify(userData))
-
-      // ✅ SECURE: Role-based redirect using server-verified role
-      if (userData.role === "admin") {
-        navigate("/admin-dashboard")
-      } else {
-        navigate("/dashboard")
-      }
-    } catch (err) {
-      console.error("Login error:", err)
-      setError(err.response?.data?.error || "Login failed. Please check your credentials.")
-    } finally {
-      setLoading(false)
+    const userData = {
+      name: userRes.data.name,
+      email: userRes.data.email,
+      role: userRes.data.role,
+      profilePicture: userRes.data.image,
     }
-  }
 
+    localStorage.setItem("user", JSON.stringify(userData))
+
+    if (userData.role === "admin") {
+      navigate("/admin-dashboard")
+    } else {
+      navigate("/dashboard")
+    }
+  } catch (err) {
+    console.error("Login error:", err)
+    setError(err.response?.data?.error || "Login failed. Please check your credentials.")
+  } finally {
+    setLoading(false)
+  }
+}
   return (
     <div className="min-h-screen bg-linear-to-br from-teal-50 via-blue-50 to-indigo-100 flex items-center justify-center">
       <div className="relative bg-white w-full max-w-4xl  rounded-2xl shadow-2xl overflow-hidden">
