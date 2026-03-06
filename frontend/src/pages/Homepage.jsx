@@ -25,8 +25,7 @@ import {
   Sparkles,
   Trophy,
   Rocket,
-  Leaf,
-  Droplets,
+
   Grid3X3,
   Circle,
 } from "lucide-react"
@@ -257,7 +256,7 @@ const InteractiveSDGAnimation = () => {
   const iconSizes = getIconSize()
 
   return (
-    <div className="relative w-full h-[450px] sm:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden mt-4">
+    <div className="relative w-full h-112.5 sm:h-125 lg:h-150 flex items-center justify-center overflow-hidden mt-4">
       {/* Background Effects - Simplified */}
       <div className="absolute inset-0">
         {/* Animated Background Gradient */}
@@ -276,25 +275,7 @@ const InteractiveSDGAnimation = () => {
         />
 
         {/* Subtle Floating Particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-20"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 2,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+
       </div>
 
       {/* Hover Tooltip */}
@@ -593,71 +574,7 @@ const HeroSection = () => {
               rgba(255, 255, 255, 0.97) 100%)`,
           }}
         />
-
-        {/* Simplified Nature Elements */}
-        <div className="absolute inset-0">
-          {/* Floating Leaves */}
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={`leaf-${i}`}
-              className="absolute hidden sm:block"
-              style={{
-                left: `${25 + i * 50}%`,
-                top: `${25 + (i % 2) * 20}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                x: [0, 10, 0],
-                rotate: [0, 90, 180],
-              }}
-              transition={{
-                duration: 6 + i * 1.5,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-                delay: i * 0.8,
-              }}
-            >
-              <Leaf
-                size={16 + (i % 2) * 4}
-                className="text-green-400 opacity-25"
-                style={{
-                  filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
-                }}
-              />
-            </motion.div>
-          ))}
-
-          {/* Water Droplets */}
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={`droplet-${i}`}
-              className="absolute hidden sm:block"
-              style={{
-                right: `${10 + i * 25}%`,
-                top: `${15 + (i % 3) * 25}%`,
-              }}
-              animate={{
-                y: [0, 30, 0],
-                scale: [1, 1.1, 1],
-                opacity: [0.3, 0.5, 0.3],
-              }}
-              transition={{
-                duration: 5 + i * 1.2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-                delay: i * 1,
-              }}
-            >
-              <Droplets
-                size={14 + (i % 2) * 3}
-                className="text-blue-400 opacity-35"
-                style={{
-                  filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))",
-                }}
-              />
-            </motion.div>
-          ))}
-        </div>
+{/*  */}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 mt-12 sm:px-6 lg:px-8 pt-12 sm:pt-16">
@@ -1305,7 +1222,7 @@ const VideoCarousel = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex-shrink-0 w-72 sm:w-80 bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300"
+                className="shrink-0 w-72 sm:w-80 bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300"
                 whileHover={{ y: -5 }}
               >
                 <div className="aspect-video relative">

@@ -287,7 +287,7 @@ const TakeActionPage = () => {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-2">Personal Sustainability Assessment</h2>
         <p className="text-xl text-gray-600 mb-8">
-          Let's understand your current habits to provide personalized action suggestions
+          Let&apos;s understand your current habits to provide personalized action suggestions
         </p>
       </motion.div>
 

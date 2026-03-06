@@ -203,7 +203,7 @@ const SDGWheel = () => {
 
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen p-4 py-28 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="relative flex flex-col items-center justify-center min-h-screen p-4 py-28 overflow-hidden bg-linear-to-br from-blue-50 via-white to-green-50">
       {/* Floating Celebration Particles */}
      
       {/* Achievement Notification */}
@@ -213,7 +213,7 @@ const SDGWheel = () => {
             initial={{ opacity: 0, scale: 0.5, y: -100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: -100 }}
-            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-xl shadow-2xl p-6 max-w-sm border-4 border-yellow-300"
+            className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-linear-to-r from-yellow-400 to-orange-500 text-white rounded-xl shadow-2xl p-6 max-w-sm border-4 border-yellow-300"
           >
             <div className="text-center">
               <div className="text-4xl mb-2">{currentAchievement.icon}</div>
@@ -232,13 +232,13 @@ const SDGWheel = () => {
             initial={{ opacity: 0, scale: 0.8, x: 100 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             exit={{ opacity: 0, scale: 0.8, x: 100 }}
-            className="fixed top-32 right-8 z-50 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-xl p-4"
+            className="fixed top-32 right-8 z-50 bg-linear-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-xl p-4"
           >
             <div className="flex items-center space-x-2">
               <Zap className="text-yellow-300" size={24} />
               <div>
                 <h4 className="font-bold">🔥 Streak: {streakCount}</h4>
-                <p className="text-sm">You're on fire!</p>
+                <p className="text-sm">You&apos;re on fire!</p>
               </div>
             </div>
           </motion.div>
@@ -294,7 +294,7 @@ const SDGWheel = () => {
         <div className="flex items-center space-x-2">
           <div className="flex-1 bg-gray-200 rounded-full h-3 w-32">
             <motion.div
-              className="bg-gradient-to-r from-green-400 to-blue-500 h-3 rounded-full"
+              className="bg-linear-to-r from-green-400 to-blue-500 h-3 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${(userProgress.size / 17) * 100}%` }}
               transition={{ duration: 0.5 }}
@@ -306,7 +306,7 @@ const SDGWheel = () => {
 
       {/* Main Title */}
       <motion.h1
-        className="mb-8 text-4xl font-bold text-center bg-gradient-to-r from-teal-600 to-green-600 bg-clip-text text-transparent"
+        className="mb-8 text-4xl font-bold text-center bg-linear-to-r from-teal-600 to-green-600 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.8 }}
@@ -721,7 +721,7 @@ const SDGWheel = () => {
                     className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"
                   >
                     <motion.div
-                      className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg text-center cursor-pointer border border-blue-200"
+                      className="bg-linear-to-br from-blue-50 to-blue-100 p-4 rounded-lg text-center cursor-pointer border border-blue-200"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -738,7 +738,7 @@ const SDGWheel = () => {
 
                     <Link to={`/quiz/${currentGoal.goalNumber}`}>
                       <motion.div
-                        className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg text-center cursor-pointer border border-green-200"
+                        className="bg-linear-to-br from-green-50 to-green-100 p-4 rounded-lg text-center cursor-pointer border border-green-200"
                         whileHover={{ scale: 1.05, y: -2 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -749,7 +749,7 @@ const SDGWheel = () => {
                     </Link>
 
                     <motion.div
-                      className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg text-center cursor-pointer border border-purple-200"
+                      className="bg-linear-to-br from-purple-50 to-purple-100 p-4 rounded-lg text-center cursor-pointer border border-purple-200"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -807,7 +807,7 @@ const SDGWheel = () => {
               >
                 <div className="mb-6">
                   <motion.div
-                    className="w-20 h-20 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                    className="w-20 h-20 bg-linear-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center mx-auto mb-4"
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
                   >
@@ -840,7 +840,7 @@ const SDGWheel = () => {
 
                 <motion.button
                   onClick={spinWheel}
-                  className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center justify-center px-8 py-3 bg-linear-to-r from-blue-600 to-green-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
